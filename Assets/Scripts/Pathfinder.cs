@@ -53,6 +53,7 @@ public class Pathfinder:MonoBehaviour {
     private void Pathfind() {
         while(frontier.Count > 0) {
             currentWP = frontier[0];
+
             if(currentWP.GetCubeCoords() == endingWP.GetCubeCoords()) {
                 // current coord is ending coord, break loop
                 break;
@@ -68,7 +69,12 @@ public class Pathfinder:MonoBehaviour {
 
             Vector2Int neighborCoords = new Vector2Int(currentWP.GetCubeCoords().x + direction.x, currentWP.GetCubeCoords().y + direction.y);
             if(!grid.ContainsKey(neighborCoords)) {
-                // cube doesn't exis
+                // cube doesn't exist, skip
+                continue;
+            }
+
+            if(!grid[neighborCoords].IsWalkable()) {
+                // can't walk on, skip
                 continue;
             }
 

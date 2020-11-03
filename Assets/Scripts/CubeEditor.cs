@@ -36,6 +36,6 @@ public class CubeEditor:MonoBehaviour {
     private void UpdateCoordinates() {
         string labelText = waypoint.GetCubeCoords().x + ", " + waypoint.GetCubeCoords().y;
         textMesh.text = labelText;
-        gameObject.name = "Cube " + "(" + labelText + ")";
+        gameObject.name = (waypoint.IsBuildable() || waypoint.IsWalkable() ? "" : "Neutral ") + "Cube " + "(" + labelText + ")";
     }
 }
