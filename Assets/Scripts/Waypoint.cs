@@ -16,4 +16,8 @@ public class Waypoint:MonoBehaviour {
             Mathf.RoundToInt(transform.position.z / GRID_SIZE)
         );
     }
+
+    public override string ToString() {
+        return "(" + this.GetCubeCoords().x + ", " + this.GetCubeCoords().y + ")";
+    }
 }

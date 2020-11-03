@@ -20,10 +20,10 @@ public class Pathfinder:MonoBehaviour {
     private List<Waypoint> path = new List<Waypoint>();
     private Waypoint currentWP;
 
-    void Start() {
+    void Awake() {
         LoadGridCubes();
         InitializePathfinding();
-        ExploreNeighbors();
+        Pathfind();
         DefinePath();
     }
 
@@ -40,10 +40,9 @@ public class Pathfinder:MonoBehaviour {
             if(!grid.ContainsKey(cubeCoords)) {   // prevent duplicate coords
                 grid.Add(cubeCoords, waypoint);
             } else {
-                print("Duplicate cube detected at (" + cubeCoords.x + ", " + cubeCoords.y + ")");
+                print("Found duplicate waypoint at " + waypoint + ", not adding to gridspace");
             }
         }
-        print(grid.Count + " grid cubes loaded");
     }
 
     private void InitializePathfinding() {
@@ -51,41 +50,50 @@ public class Pathfinder:MonoBehaviour {
         breadcrumbs.Add(startingWP, null);
     }
 
-    private void ExploreNeighbors() {
+    private void Pathfind() {
         while(frontier.Count > 0) {
-
             currentWP = frontier[0];
             if(currentWP.GetCubeCoords() == endingWP.GetCubeCoords()) {
-                print("Found ending at " + currentWP.GetCubeCoords().x + ", " + currentWP.GetCubeCoords().y);
+                // current coord is ending coord, break loop
                 break;
             }
 
-            foreach(Vector2Int direction in directions) {
-                Vector2Int neighborCoords = new Vector2Int(currentWP.GetCubeCoords().x + direction.x, currentWP.GetCubeCoords().y + direction.y);
-                print("Exploring cube at " + neighborCoords.x + ", " + neighborCoords.y);
-
-                if(!grid.ContainsKey(neighborCoords)) {
-                    print("Cube at " + neighborCoords.x + ", " + neighborCoords.y + " was not found, skipping...");
-                    continue;
-                }
-
-                if(!breadcrumbs.ContainsKey(grid[neighborCoords])) {
-                    frontier.Add(grid[neighborCoords]);
-                    breadcrumbs.Add(grid[neighborCoords], currentWP);
-                    print("Cube at " + neighborCoords.x + ", " + neighborCoords.y + " trails back to " + currentWP.GetCubeCoords().x + ", " + currentWP.GetCubeCoords().y);
-                } else {
-                    print("Cube at " + neighborCoords.x + ", " + neighborCoords.y + " already explored, skipping...");
-                }
-            }
+            ExploreNeighbors();
             frontier.RemoveAt(0);
+        }
+    }
+
+    private void ExploreNeighbors() {
+        foreach(Vector2Int direction in directions) {
+
+            Vector2Int neighborCoords = new Vector2Int(currentWP.GetCubeCoords().x + direction.x, currentWP.GetCubeCoords().y + direction.y);
+            if(!grid.ContainsKey(neighborCoords)) {
+                // cube doesn't exis
+                continue;
+            }
+
+            if(!breadcrumbs.ContainsKey(grid[neighborCoords])) {    // skip if already explored
+                // add neighbor to frontier and breadcrumbs
+                frontier.Add(grid[neighborCoords]);
+                breadcrumbs.Add(grid[neighborCoords], currentWP);
+            }
         }
     }
 
     private void DefinePath() {
         Waypoint current = endingWP;
         while(current != startingWP) {
+            // add each waypoint to path (backwards)
             path.Add(current);
-            current = breadcrumbs[current];
+
+            if(breadcrumbs.ContainsKey(current)) {
+                current = breadcrumbs[current];
+            } else {
+                // no viable path found
+                path.Clear();
+                print("No viable path found from " + startingWP + " to " + endingWP);
+                break;
+            }
         }
         path.Add(startingWP);
         path.Reverse();
