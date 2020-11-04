@@ -3795,6 +3795,10 @@ PrefabInstance:
       propertyPath: enemyObject
       value: 
       objectReference: {fileID: 1486945692}
+    - target: {fileID: 1840876969, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
+      propertyPath: enemyPos
+      value: 
+      objectReference: {fileID: 1486945692}
     - target: {fileID: 3347296883348242666, guid: 88eb6b2002a164b2c8314a4e798c16c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3854,6 +3858,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706397723587557821, guid: 88eb6b2002a164b2c8314a4e798c16c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
@@ -12461,6 +12470,10 @@ PrefabInstance:
       propertyPath: enemyObject
       value: 
       objectReference: {fileID: 1486945692}
+    - target: {fileID: 1840876969, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
+      propertyPath: enemyPos
+      value: 
+      objectReference: {fileID: 1486945692}
     - target: {fileID: 3347296883348242666, guid: 88eb6b2002a164b2c8314a4e798c16c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12520,6 +12533,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706397723587557821, guid: 88eb6b2002a164b2c8314a4e798c16c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
@@ -13079,6 +13097,10 @@ PrefabInstance:
       propertyPath: enemyObject
       value: 
       objectReference: {fileID: 1486945692}
+    - target: {fileID: 1840876969, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
+      propertyPath: enemyPos
+      value: 
+      objectReference: {fileID: 1486945692}
     - target: {fileID: 3347296883348242666, guid: 88eb6b2002a164b2c8314a4e798c16c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13138,6 +13160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706397723587557821, guid: 88eb6b2002a164b2c8314a4e798c16c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
@@ -13459,11 +13486,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 1858898193}
     m_Modifications:
     - target: {fileID: 1840876969, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
-      propertyPath: towerHead
-      value: 
-      objectReference: {fileID: 1840876970}
-    - target: {fileID: 1840876969, guid: 88eb6b2002a164b2c8314a4e798c16c1, type: 3}
-      propertyPath: enemyObject
+      propertyPath: enemyPos
       value: 
       objectReference: {fileID: 1486945692}
     - target: {fileID: 3347296883348242666, guid: 88eb6b2002a164b2c8314a4e798c16c1,
@@ -13531,12 +13554,6 @@ PrefabInstance:
 --- !u!4 &1840876967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3347296883348242666, guid: 88eb6b2002a164b2c8314a4e798c16c1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1840876966}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1840876970 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7665825025664325002, guid: 88eb6b2002a164b2c8314a4e798c16c1,
     type: 3}
   m_PrefabInstance: {fileID: 1840876966}
   m_PrefabAsset: {fileID: 0}
