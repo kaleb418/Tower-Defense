@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Pathfinder:MonoBehaviour {
 
-    [SerializeField] Waypoint startingWP;
-    [SerializeField] Waypoint endingWP;
-
     private Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     private Vector2Int[] directions = {
         Vector2Int.up,
@@ -18,13 +15,20 @@ public class Pathfinder:MonoBehaviour {
     private List<Waypoint> frontier = new List<Waypoint>();
     private Dictionary<Waypoint, Waypoint> breadcrumbs = new Dictionary<Waypoint, Waypoint>();
     private List<Waypoint> path = new List<Waypoint>();
+    private Waypoint startingWP;
+    private Waypoint endingWP;
     private Waypoint currentWP;
+    private bool pathDefined = false;
 
-    void Awake() {
+    void Start() {
         LoadGridCubes();
         InitializePathfinding();
         Pathfind();
         DefinePath();
+    }
+
+    public bool IsPathDefined() {
+        return pathDefined;
     }
 
     public List<Waypoint> GetPath() {
@@ -46,6 +50,10 @@ public class Pathfinder:MonoBehaviour {
     }
 
     private void InitializePathfinding() {
+        EnemySpawner spawner = transform.parent.GetComponent<EnemySpawner>();
+        startingWP = spawner.GetStartingWaypoint();
+        endingWP = spawner.GetEndingWaypoint();
+
         frontier.Add(startingWP);
         breadcrumbs.Add(startingWP, null);
     }
@@ -103,5 +111,6 @@ public class Pathfinder:MonoBehaviour {
         }
         path.Add(startingWP);
         path.Reverse();
+        pathDefined = true;
     }
 }

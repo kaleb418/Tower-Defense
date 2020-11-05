@@ -8,6 +8,10 @@ public class Waypoint:MonoBehaviour {
     [SerializeField] private bool isWalkable = true;
     [SerializeField] private bool isBuildable = true;
 
+    private void OnMouseDown() {
+        
+    }
+
     public float GetGridSize() {
         return GRID_SIZE;
     }
