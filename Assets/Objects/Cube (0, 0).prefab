@@ -79,7 +79,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241771821}
-  m_Text: 2, -4
+  m_Text: -2, 2
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -530,6 +530,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3df6e5cfc234df0af14b03fece34c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueTowerParent: {fileID: 0}
+  blueTowerPrefab: {fileID: 7706397723587557821, guid: 88eb6b2002a164b2c8314a4e798c16c1,
+    type: 3}
   isWalkable: 1
   isBuildable: 1
 --- !u!65 &867057902

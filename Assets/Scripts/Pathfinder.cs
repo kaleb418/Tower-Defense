@@ -21,6 +21,10 @@ public class Pathfinder:MonoBehaviour {
     private bool pathDefined = false;
 
     void Start() {
+        CreatePath();
+    }
+
+    private void CreatePath() {
         LoadGridCubes();
         InitializePathfinding();
         Pathfind();
@@ -42,6 +46,10 @@ public class Pathfinder:MonoBehaviour {
             Vector2Int cubeCoords = waypoint.GetCubeCoords();
 
             if(!grid.ContainsKey(cubeCoords)) {   // prevent duplicate coords
+                if(!waypoint.IsWalkable()) {
+                    // can't walk on, don't add to grid
+                    continue;
+                }
                 grid.Add(cubeCoords, waypoint);
             } else {
                 print("Found duplicate waypoint at " + waypoint + ", not adding to gridspace");
@@ -78,11 +86,6 @@ public class Pathfinder:MonoBehaviour {
             Vector2Int neighborCoords = new Vector2Int(currentWP.GetCubeCoords().x + direction.x, currentWP.GetCubeCoords().y + direction.y);
             if(!grid.ContainsKey(neighborCoords)) {
                 // cube doesn't exist, skip
-                continue;
-            }
-
-            if(!grid[neighborCoords].IsWalkable()) {
-                // can't walk on, skip
                 continue;
             }
 

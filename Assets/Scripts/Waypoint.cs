@@ -5,11 +5,38 @@ using UnityEngine;
 public class Waypoint:MonoBehaviour {
 
     const float GRID_SIZE = 10f;
-    [SerializeField] private bool isWalkable = true;
-    [SerializeField] private bool isBuildable = true;
+    [SerializeField] bool isWalkable = true;
+    [SerializeField] bool isBuildable = true;
+
+    private TowerAssets worldInteractionManager;
+    private GameObject blueTowerParent;
+    private GameObject blueTowerPrefab;
+    private GameObject yellowTowerParent;
+    private GameObject yellowTowerPrefab;
+
+    void Start() {
+        worldInteractionManager = transform.parent.transform.parent.GetComponent<TowerAssets>();
+        blueTowerParent = worldInteractionManager.GetBlueTowerParent();
+        blueTowerPrefab = worldInteractionManager.GetBlueTowerPrefab();
+        yellowTowerParent = worldInteractionManager.GetYellowTowerParent();
+        yellowTowerPrefab = worldInteractionManager.GetYellowTowerPrefab();
+    }
 
     private void OnMouseDown() {
-        
+        BuildTower(blueTowerPrefab, blueTowerParent);
+        BlockWaypoint();
+    }
+
+    private void BuildTower(GameObject towerPrefab, GameObject towerParent) {
+        if(isBuildable) {
+            GameObject newTower = Instantiate(towerPrefab, new Vector3(transform.position.x, 10.5f, transform.position.z), Quaternion.identity);
+            newTower.transform.parent = towerParent.transform;
+        }
+    }
+
+    private void BlockWaypoint() {
+        isWalkable = false;
+        isBuildable = false;
     }
 
     public float GetGridSize() {

@@ -9,9 +9,10 @@ public class TowerHandler:MonoBehaviour {
     [SerializeField] [Range(0f, 50f)] float damage;
     [SerializeField] [Range(1f, 100f)] float shotsPerSecond;
     [SerializeField] Transform towerHead;
-    [SerializeField] Transform enemyPos;
     [SerializeField] ParticleSystem laserParticles;
     [SerializeField] ParticleSystem smokeParticles;
+
+    private Transform enemyPos;
 
     void Start() {
         var emission = laserParticles.emission;
